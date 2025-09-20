@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pagamento - PreviewMe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+  <!-- AOS - Animate on Scroll -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Navbar -->
+  <header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-2xl font-bold text-pink-600">PreviewMe</h1>
+      <nav class="hidden md:flex space-x-6 font-medium">
+        <a href="index.html#sobre" class="hover:text-pink-600">Sobre</a>
+        <a href="index.html#funcionalidades" class="hover:text-pink-600">Funcionalidades</a>
+        <a href="catalogo.html" class="hover:text-pink-600">Catálogo</a>
+        <a href="index.html#planos" class="hover:text-pink-600">Planos</a>
+        <a href="index.html#contato" class="hover:text-pink-600">Contato</a>
+      </nav>
+      <div class="hidden md:flex space-x-4">
+        <a href="index.html#contato" class="bg-pink-600 text-white px-5 py-2 rounded-full hover:bg-pink-700 transition">Quero Testar</a>
+        <a href="login.html" class="bg-gray-100 text-gray-800 px-5 py-2 rounded-full hover:bg-gray-200 transition">Entrar</a>
+      </div>
+      <button id="menu-btn" class="md:hidden text-3xl"><i class="bx bx-menu"></i></button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div id="menu" class="hidden fixed top-0 left-0 w-full h-full bg-white z-40 flex flex-col items-center justify-center space-y-6 text-xl font-medium">
+    <a href="index.html#sobre" onclick="toggleMenu()">Sobre</a>
+    <a href="index.html#funcionalidades" onclick="toggleMenu()">Funcionalidades</a>
+    <a href="catalogo.html" onclick="toggleMenu()">Catálogo</a>
+    <a href="index.html#planos" onclick="toggleMenu()">Planos</a>
+    <a href="index.html#contato" onclick="toggleMenu()">Contato</a>
+    <a href="login.html" onclick="toggleMenu()">Cadastro/Login</a>
+    <button onclick="toggleMenu()" class="mt-8 text-pink-600">Fechar</button>
+  </div>
+
+  <!-- Hero -->
+  <section class="pt-40 pb-12 text-center bg-gradient-to-b from-pink-50 to-white">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900" data-aos="zoom-in">
+      Pagamento do Agendamento
+    </h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+      Revise os detalhes e escolha a forma de pagamento para confirmar sua reserva.
+    </p>
+  </section>
+
+  <!-- Resumo + Pagamento -->
+  <section class="container mx-auto px-6 pb-20">
+    <div class="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto space-y-8" data-aos="fade-up">
+
+      <!-- Resumo -->
+      <div>
+        <h3 class="text-xl font-bold mb-4 text-pink-600">Resumo do Agendamento</h3>
+        <ul class="text-gray-700 space-y-2">
+          <li><strong>Serviço:</strong> Unhas Decoradas</li>
+          <li><strong>Profissional:</strong> Ana - Designer de Unhas</li>
+          <li><strong>Data:</strong> 25/09/2025</li>
+          <li><strong>Horário:</strong> 15:00</li>
+          <li><strong>Valor:</strong> R$ 80,00</li>
+        </ul>
+      </div>
+
+      <!-- Formas de pagamento -->
+      <div>
+        <h3 class="text-xl font-bold mb-4 text-pink-600">Forma de Pagamento</h3>
+        <div class="space-y-3">
+          <label class="flex items-center gap-3">
+            <input type="radio" name="pagamento" value="pix" class="text-pink-600 focus:ring-pink-600" checked>
+            <span>PIX</span>
+          </label>
+          <label class="flex items-center gap-3">
+            <input type="radio" name="pagamento" value="cartao" class="text-pink-600 focus:ring-pink-600">
+            <span>Cartão de Crédito</span>
+          </label>
+          <label class="flex items-center gap-3">
+            <input type="radio" name="pagamento" value="carteira" class="text-pink-600 focus:ring-pink-600">
+            <span>Carteira Digital</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Dados do Cartão -->
+      <div id="cartao-section" class="hidden space-y-4">
+        <input type="text" placeholder="Número do Cartão" maxlength="19" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-600">
+        <div class="grid grid-cols-2 gap-4">
+          <input type="text" placeholder="Validade (MM/AA)" maxlength="5" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-600">
+          <input type="text" placeholder="CVV" maxlength="3" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-600">
+        </div>
+        <input type="text" placeholder="Nome impresso no cartão" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-600">
+      </div>
+
+      <!-- Botão -->
+      <button id="btn-pagar" class="w-full bg-pink-600 text-white py-4 rounded-lg font-bold hover:bg-pink-700 transition">
+        Confirmar Pagamento
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-10">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+      <p>&copy; 2025 PreviewMe. Todos os direitos reservados.</p>
+      <div class="flex space-x-4 mt-4 md:mt-0">
+        <a href="#"><i class="bx bxl-facebook text-2xl hover:text-white"></i></a>
+        <a href="#"><i class="bx bxl-instagram text-2xl hover:text-white"></i></a>
+        <a href="#"><i class="bx bxl-linkedin text-2xl hover:text-white"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const menu = document.getElementById('menu');
+    const btn = document.getElementById('menu-btn');
+    function toggleMenu() {
+      menu.classList.toggle('hidden');
+    }
+    btn.addEventListener('click', toggleMenu);
+
+    // Alternar campos do cartão
+    const radios = document.querySelectorAll('input[name="pagamento"]');
+    const cartaoSection = document.getElementById('cartao-section');
+    radios.forEach(r => {
+      r.addEventListener('change', () => {
+        if (r.value === "cartao" && r.checked) {
+          cartaoSection.classList.remove("hidden");
+        } else if (r.checked) {
+          cartaoSection.classList.add("hidden");
+        }
+      });
+    });
+
+    // Fake botão pagar
+    document.getElementById('btn-pagar').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert("Pagamento confirmado com sucesso!");
+      window.location.href = "index.html";
+    });
+  </script>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: false,
+    });
+  </script>
+</body>
+</html>

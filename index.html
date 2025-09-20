@@ -4,11 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PreviewMe - Experiência de Beleza com Realidade Aumentada</title>
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <!-- AOS - Animate on Scroll -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* pequeno ajuste para evitar que header sobreponha conteúdo ao usar âncoras */
+    html { scroll-behavior: smooth; }
+    section { scroll-margin-top: 84px; } /* altura do header */
+
+    /* hero como background */
+    .hero-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.65), rgba(255,255,255,0.25)),
+        url("https://images.pexels.com/photos/7035115/pexels-photo-7035115.jpeg?cs=srgb&dl=pexels-rdne-7035115.jpg&fm=jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* garantir contraste do texto em telas pequenas */
+    @media (max-width: 640px) {
+      .hero-bg { background-position: center 30%; }
+    }
+  </style>
 </head>
 <body class="bg-white text-gray-800">
 
@@ -19,6 +40,7 @@
       <nav class="hidden md:flex space-x-6 font-medium">
         <a href="#sobre" class="hover:text-pink-600">Sobre</a>
         <a href="#funcionalidades" class="hover:text-pink-600">Funcionalidades</a>
+        <a href="#catalogo" class="hover:text-pink-600">Catálogo</a>
         <a href="#planos" class="hover:text-pink-600">Planos</a>
         <a href="#contato" class="hover:text-pink-600">Contato</a>
         <a href="login.html" class="hover:text-pink-600">Cadastro/Login</a>
@@ -35,25 +57,31 @@
   <div id="menu" class="hidden fixed top-0 left-0 w-full h-full bg-white z-40 flex flex-col items-center justify-center space-y-6 text-xl font-medium">
     <a href="#sobre" onclick="toggleMenu()">Sobre</a>
     <a href="#funcionalidades" onclick="toggleMenu()">Funcionalidades</a>
+    <a href="#catalogo" onclick="toggleMenu()">Catálogo</a>
     <a href="#planos" onclick="toggleMenu()">Planos</a>
     <a href="#contato" onclick="toggleMenu()">Contato</a>
     <a href="login.html" onclick="toggleMenu()">Cadastro/Login</a>
     <button onclick="toggleMenu()" class="mt-8 text-pink-600">Fechar</button>
   </div>
 
-  <!-- Hero -->
-  <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 bg-gradient-to-b from-pink-50 to-white">
-    <h2 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight" data-aos="zoom-in">
-      Experimente sua beleza com <span class="text-pink-600">Realidade Aumentada</span>
-    </h2>
-    <p class="mt-6 max-w-2xl text-lg text-gray-600" data-aos="fade-up" data-aos-delay="200">
-      O PreviewMe revoluciona clínicas de estética, permitindo simular unhas e cílios em tempo real, além de gerenciar agendamentos, pagamentos e muito mais.
-    </p>
-    <div class="mt-8 space-x-4" data-aos="fade-up" data-aos-delay="400">
-      <a href="#planos" class="bg-pink-600 text-white px-6 py-3 rounded-full shadow hover:bg-pink-700 transition">Conhecer Planos</a>
-      <a href="login.html" class="bg-gray-100 px-6 py-3 rounded-full shadow hover:bg-gray-200 transition">Login</a>
+  <!-- Hero (agora background) -->
+  <section class="hero-bg relative min-h-screen flex items-center justify-center text-center px-6">
+    <!-- container para limitar largura do texto sobre a imagem -->
+    <div class="container mx-auto z-10 py-24">
+      <h2 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight" data-aos="zoom-in">
+        Experimente sua beleza com <span class="text-pink-600">Realidade Aumentada</span>
+      </h2>
+      <p class="mt-6 max-w-2xl text-lg text-gray-700 mx-auto" data-aos="fade-up" data-aos-delay="200">
+        O PreviewMe revoluciona clínicas de estética, permitindo simular unhas e cílios em tempo real, além de gerenciar agendamentos, pagamentos e muito mais.
+      </p>
+      <div class="mt-8 space-x-4" data-aos="fade-up" data-aos-delay="400">
+        <a href="#planos" class="bg-pink-600 text-white px-6 py-3 rounded-full shadow hover:bg-pink-700 transition">Conhecer Planos</a>
+        <a href="login.html" class="bg-gray-100 px-6 py-3 rounded-full shadow hover:bg-gray-200 transition">Login</a>
+      </div>
     </div>
-    <img src="https://images.unsplash.com/photo-1600721391951-46a9ce8e96a9?auto=format&fit=crop&w=1200&q=80" alt="" class="mt-12 rounded-2xl shadow-lg max-w-4xl" data-aos="fade-up" data-aos-delay="600">
+
+    <!-- leve overlay escurecedor adicional para melhorar leitura em telas muito claras -->
+    <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(rgba(255,255,255,0.15), rgba(255,255,255,0.45));"></div>
   </section>
 
   <!-- Sobre -->
@@ -99,6 +127,73 @@
           <h4 class="font-semibold text-xl mb-2">Suporte Integrado</h4>
           <p class="text-gray-600">Atendimento rápido via chat, FAQ ou abertura de chamado.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catálogo -->
+  <section id="catalogo" class="py-20 container mx-auto px-6 text-center">
+    <h3 class="text-3xl font-bold mb-12" data-aos="fade-up">Catálogo de Serviços</h3>
+
+    <!-- Grid com imagens reais do Pexels (links diretos CDN) -->
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Unhas Decoradas -->
+      <div class="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition" data-aos="zoom-in">
+        <img src="https://images.pexels.com/photos/1367219/pexels-photo-1367219.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+             alt="Unhas decoradas" class="rounded-xl mb-4 h-56 w-full object-cover" loading="lazy">
+        <h4 class="font-semibold text-xl">Unhas Decoradas</h4>
+        <p class="text-gray-600">R$ 80</p>
+        <p class="text-sm text-gray-500 mt-2">Exemplo de design criativo e colorido.</p>
+        <div class="mt-4">
+          <a href="agendamento.html?servico=unhas-decoradas" class="bg-pink-600 text-white px-4 py-2 rounded-full hover:bg-pink-700 transition">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Cílios Fio a Fio -->
+      <div class="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="200">
+        <img src="https://images.pexels.com/photos/3762663/pexels-photo-3762663.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+             alt="Cílios fio a fio" class="rounded-xl mb-4 h-56 w-full object-cover" loading="lazy">
+        <h4 class="font-semibold text-xl">Cílios Fio a Fio</h4>
+        <p class="text-gray-600">R$ 120</p>
+        <p class="text-sm text-gray-500 mt-2">Aplicação profissional para alongamento natural.</p>
+        <div class="mt-4">
+          <a href="agendamento.html?servico=cilios-fio-a-fio" class="bg-pink-600 text-white px-4 py-2 rounded-full hover:bg-pink-700 transition">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Unhas Francesinhas -->
+      <div class="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="400">
+        <img src="https://images.pexels.com/photos/29837129/pexels-photo-29837129.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+             alt="Unhas francesinhas" class="rounded-xl mb-4 h-56 w-full object-cover" loading="lazy">
+        <h4 class="font-semibold text-xl">Unhas Francesinhas</h4>
+        <p class="text-gray-600">R$ 70</p>
+        <p class="text-sm text-gray-500 mt-2">Clássico e elegante — base nude com ponta branca.</p>
+        <div class="mt-4">
+          <a href="agendamento.html?servico=unhas-francesinhas" class="bg-pink-600 text-white px-4 py-2 rounded-full hover:bg-pink-700 transition">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Exemplo adicional 1 -->
+      <div class="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition" data-aos="zoom-in">
+        <img src="https://images.pexels.com/photos/2268404/pexels-photo-2268404.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+             alt="Manicure elegante" class="rounded-xl mb-4 h-56 w-full object-cover" loading="lazy">
+        <h4 class="font-semibold text-xl">Manicure Completa</h4>
+        <p class="text-gray-600">R$ 60</p>
+      </div>
+
+      <!-- Exemplo adicional 2 -->
+      <div class="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition" data-aos="zoom-in" data-aos-delay="200">
+        <img src="https://images.pexels.com/photos/791157/pexels-photo-791157.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+             alt="Esmaltação" class="rounded-xl mb-4 h-56 w-full object-cover" loading="lazy">
+        <h4 class="font-semibold text-xl">Esmaltação Rápida</h4>
+        <p class="text-gray-600">R$ 35</p>
+      </div>
+
+      <!-- Botão ver completo -->
+      <div class="md:col-span-3 mt-4 text-center">
+        <a href="catalogo.html" class="inline-block bg-pink-600 text-white px-6 py-3 rounded-full shadow hover:bg-pink-700 transition">
+          Ver Catálogo Completo
+        </a>
       </div>
     </div>
   </section>
@@ -173,9 +268,7 @@
   <script>
     const menu = document.getElementById('menu');
     const btn = document.getElementById('menu-btn');
-    function toggleMenu() {
-      menu.classList.toggle('hidden');
-    }
+    function toggleMenu() { menu.classList.toggle('hidden'); }
     btn.addEventListener('click', toggleMenu);
   </script>
 
@@ -183,8 +276,8 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
-      duration: 1000,
-      once: false, // anima sempre que entra na tela
+      duration: 900,
+      once: false
     });
   </script>
 </body>

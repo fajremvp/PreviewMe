@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendamento - PreviewMe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+  <!-- AOS - Animate on Scroll -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Navbar -->
+  <header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-2xl font-bold text-pink-600">PreviewMe</h1>
+      <nav class="hidden md:flex space-x-6 font-medium">
+        <a href="index.html#sobre" class="hover:text-pink-600">Sobre</a>
+        <a href="index.html#funcionalidades" class="hover:text-pink-600">Funcionalidades</a>
+        <a href="catalogo.html" class="hover:text-pink-600">Catálogo</a>
+        <a href="index.html#planos" class="hover:text-pink-600">Planos</a>
+        <a href="index.html#contato" class="hover:text-pink-600">Contato</a>
+      </nav>
+      <div class="hidden md:flex space-x-4">
+        <a href="index.html#contato" class="bg-pink-600 text-white px-5 py-2 rounded-full hover:bg-pink-700 transition">Quero Testar</a>
+        <a href="login.html" class="bg-gray-100 text-gray-800 px-5 py-2 rounded-full hover:bg-gray-200 transition">Entrar</a>
+      </div>
+      <button id="menu-btn" class="md:hidden text-3xl"><i class="bx bx-menu"></i></button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div id="menu" class="hidden fixed top-0 left-0 w-full h-full bg-white z-40 flex flex-col items-center justify-center space-y-6 text-xl font-medium">
+    <a href="index.html#sobre" onclick="toggleMenu()">Sobre</a>
+    <a href="index.html#funcionalidades" onclick="toggleMenu()">Funcionalidades</a>
+    <a href="catalogo.html" onclick="toggleMenu()">Catálogo</a>
+    <a href="index.html#planos" onclick="toggleMenu()">Planos</a>
+    <a href="index.html#contato" onclick="toggleMenu()">Contato</a>
+    <a href="login.html" onclick="toggleMenu()">Cadastro/Login</a>
+    <button onclick="toggleMenu()" class="mt-8 text-pink-600">Fechar</button>
+  </div>
+
+  <!-- Hero -->
+  <section class="pt-40 pb-12 text-center bg-gradient-to-b from-pink-50 to-white">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900" data-aos="zoom-in">
+      Agendamento de Serviço
+    </h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+      Escolha o profissional, serviço, data e horário para realizar seu agendamento.
+    </p>
+  </section>
+
+  <!-- Formulário de Agendamento -->
+  <section class="container mx-auto px-6 pb-20">
+    <div class="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto" data-aos="fade-up">
+      <form class="space-y-6">
+        <!-- Profissional -->
+        <div>
+          <label class="block text-gray-700 font-semibold mb-2">Profissional</label>
+          <select class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-600" required>
+            <option value="">Selecione o profissional</option>
+            <option>Ana - Designer de Unhas</option>
+            <option>Maria - Especialista em Cílios</option>
+            <option>Juliana - Esteticista</option>
+          </select>
+        </div>
+
+        <!-- Serviço -->
+        <div>
+          <label class="block text-gray-700 font-semibold mb-2">Serviço</label>
+          <select class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-600" required>
+            <option value="">Selecione o serviço</option>
+            <option>Unhas Decoradas - R$ 80</option>
+            <option>Cílios Fio a Fio - R$ 120</option>
+            <option>Unhas Francesinhas - R$ 70</option>
+          </select>
+        </div>
+
+        <!-- Data e Hora -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2">Data</label>
+            <input type="date" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-600" required>
+          </div>
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2">Horário</label>
+            <input type="time" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-600" required>
+          </div>
+        </div>
+
+        <!-- Observações -->
+        <div>
+          <label class="block text-gray-700 font-semibold mb-2">Observações</label>
+          <textarea rows="4" placeholder="Digite informações adicionais (opcional)" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-600"></textarea>
+        </div>
+
+        <!-- Botão -->
+        <button type="submit" class="w-full bg-pink-600 text-white py-4 rounded-lg font-bold hover:bg-pink-700 transition">
+          Confirmar Agendamento
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-10">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+      <p>&copy; 2025 PreviewMe. Todos os direitos reservados.</p>
+      <div class="flex space-x-4 mt-4 md:mt-0">
+        <a href="#"><i class="bx bxl-facebook text-2xl hover:text-white"></i></a>
+        <a href="#"><i class="bx bxl-instagram text-2xl hover:text-white"></i></a>
+        <a href="#"><i class="bx bxl-linkedin text-2xl hover:text-white"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const menu = document.getElementById('menu');
+    const btn = document.getElementById('menu-btn');
+    function toggleMenu() {
+      menu.classList.toggle('hidden');
+    }
+    btn.addEventListener('click', toggleMenu);
+  </script>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: false,
+    });
+  </script>
+</body>
+</html>

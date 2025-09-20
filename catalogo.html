@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Catálogo - PreviewMe</title>
+
+  <!-- Tailwind + Boxicons + AOS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    /* evita que o header fixo cubra conteúdo ao navegar por âncoras */
+    section { scroll-margin-top: 92px; }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Navbar -->
+  <header class="fixed w-full bg-white/85 backdrop-blur-md shadow-sm z-50">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-pink-600">PreviewMe</h1>
+
+      <nav class="hidden md:flex items-center space-x-6 font-medium">
+        <a href="index.html#sobre" class="hover:text-pink-600">Sobre</a>
+        <a href="index.html#funcionalidades" class="hover:text-pink-600">Funcionalidades</a>
+        <a href="catalogo.html" class="text-pink-600 font-semibold">Catálogo</a>
+        <a href="index.html#planos" class="hover:text-pink-600">Planos</a>
+        <a href="index.html#contato" class="hover:text-pink-600">Contato</a>
+      </nav>
+
+      <div class="hidden md:flex items-center space-x-4">
+        <a href="index.html#contato" class="bg-pink-600 text-white px-4 py-2 rounded-full hover:bg-pink-700 transition">Quero Testar</a>
+        <a href="login.html" class="bg-gray-100 px-4 py-2 rounded-full hover:bg-gray-200 transition">Entrar</a>
+      </div>
+
+      <button id="menu-btn" class="md:hidden text-3xl"><i class="bx bx-menu"></i></button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div id="menu" class="hidden fixed inset-0 z-40 bg-white flex flex-col items-center justify-center space-y-6 text-xl font-medium">
+    <a href="index.html#sobre" onclick="toggleMenu()">Sobre</a>
+    <a href="index.html#funcionalidades" onclick="toggleMenu()">Funcionalidades</a>
+    <a href="catalogo.html" onclick="toggleMenu()" class="text-pink-600">Catálogo</a>
+    <a href="index.html#planos" onclick="toggleMenu()">Planos</a>
+    <a href="index.html#contato" onclick="toggleMenu()">Contato</a>
+    <a href="login.html" onclick="toggleMenu()">Cadastro/Login</a>
+    <button onclick="toggleMenu()" class="mt-6 text-pink-600">Fechar</button>
+  </div>
+
+  <!-- Hero (espaço compensado para header) -->
+  <section class="pt-40 pb-12 text-center bg-gradient-to-b from-pink-50 to-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900" data-aos="zoom-in">Catálogo de Serviços</h2>
+      <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="150">
+        Explore nosso catálogo de <span class="text-pink-600 font-semibold">unhas e cílios</span>, veja preços, simule e agende com facilidade.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filtros -->
+  <section class="container mx-auto px-6 mb-12">
+    <div class="bg-white p-6 rounded-2xl shadow flex flex-col md:flex-row md:items-center md:justify-between gap-4" data-aos="fade-up">
+      <div class="flex flex-col md:flex-row gap-4">
+        <select id="f-tipo" class="p-3 border rounded-lg focus:ring-2 focus:ring-pink-600">
+          <option value="">Tipo de serviço</option>
+          <option value="unhas">Unhas</option>
+          <option value="cilios">Cílios</option>
+        </select>
+        <select id="f-cor" class="p-3 border rounded-lg focus:ring-2 focus:ring-pink-600">
+          <option value="">Cor / Estilo</option>
+          <option value="rosa">Rosa</option>
+          <option value="natural">Natural</option>
+          <option value="classic">Clássico</option>
+        </select>
+        <select id="f-preco" class="p-3 border rounded-lg focus:ring-2 focus:ring-pink-600">
+          <option value="">Faixa de preço</option>
+          <option value="0-50">Até R$50</option>
+          <option value="51-100">R$51–100</option>
+          <option value="100+">Acima de R$100</option>
+        </select>
+      </div>
+      <div class="flex gap-3 items-center">
+        <button id="btn-filter" class="bg-pink-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-pink-700 transition">Filtrar</button>
+        <button id="btn-clear" class="px-4 py-3 rounded-lg border hover:bg-gray-50 transition">Limpar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grid do Catálogo -->
+  <main class="container mx-auto px-6 pb-20">
+    <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <!-- Card 1 - Unhas Decoradas -->
+      <article class="bg-white rounded-2xl shadow hover:shadow-lg transition p-6 flex flex-col" data-type="unhas" data-price="80" data-aos="fade-up">
+        <img src="https://images.pexels.com/photos/1367219/pexels-photo-1367219.jpeg?cs=srgb&dl=pexels-designecologist-1367219.jpg&fm=jpg"
+             alt="Unhas Decoradas" class="rounded-xl mb-4 h-56 w-full object-cover" loading="lazy">
+        <h4 class="text-xl font-bold mb-1">Unhas Decoradas</h4>
+        <p class="text-gray-600 mb-2">Estilo moderno com acabamento duradouro.</p>
+        <p class="text-pink-600 font-bold text-lg mb-4">R$ 80,00</p>
+        <div class="mt-auto flex gap-3">
+          <a href="agendamento.html?servico=unhas-decoradas" class="flex-1 text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agendar</a>
+          <button class="flex-1 text-center bg-gray-100 py-2 rounded-lg hover:bg-gray-200 transition" data-action="simular" data-img="https://images.pexels.com/photos/1367219/pexels-photo-1367219.jpeg?cs=srgb&dl=pexels-designecologist-1367219.jpg&fm=jpg">Simular</button>
+        </div>
+      </article>
+
+      <!-- Card 2 - Cílios Fio a Fio -->
+      <article class="bg-white rounded-2xl shadow hover:shadow-lg transition p-6 flex flex-col" data-type="cilios" data-price="120" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://images.pexels.com/photos/3762663/pexels-photo-3762663.jpeg?cs=srgb&dl=pexels-shiny-diamond-3762663.jpg&fm=jpg"
+             alt="Cílios Fio a Fio" class="rounded-xl mb-4 h-56 w-full object-cover" loading="lazy">
+        <h4 class="text-xl font-bold mb-1">Cílios Fio a Fio</h4>
+        <p class="text-gray-600 mb-2">Alongamento natural com resultado duradouro.</p>
+        <p class="text-pink-600 font-bold text-lg mb-4">R$ 120,00</p>
+        <div class="mt-auto flex gap-3">
+          <a href="agendamento.html?servico=cilios-fio-a-fio" class="flex-1 text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agendar</a>
+          <button class="flex-1 text-center bg-gray-100 py-2 rounded-lg hover:bg-gray-200 transition" data-action="simular" data-img="https://images.pexels.com/photos/3762663/pexels-photo-3762663.jpeg?cs=srgb&dl=pexels-shiny-diamond-3762663.jpg&fm=jpg">Simular</button>
+        </div>
+      </article>
+
+      <!-- Card 3 - Unhas Francesinhas -->
+      <article class="bg-white rounded-2xl shadow hover:shadow-lg transition p-6 flex flex-col" data-type="unhas" data-price="70" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://images.pexels.com/photos/29837129/pexels-photo-29837129.jpeg?cs=srgb&dl=pexels-anastasia-kisil-912962163-29837129.jpg&fm=jpg"
+             alt="Unhas Francesinhas" class="rounded-xl mb-4 h-56 w-full object-cover" loading="lazy">
+        <h4 class="text-xl font-bold mb-1">Unhas Francesinhas</h4>
+        <p class="text-gray-600 mb-2">Base nude com ponta branca — clássico e elegante.</p>
+        <p class="text-pink-600 font-bold text-lg mb-4">R$ 70,00</p>
+        <div class="mt-auto flex gap-3">
+          <a href="agendamento.html?servico=unhas-francesinhas" class="flex-1 text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agendar</a>
+          <button class="flex-1 text-center bg-gray-100 py-2 rounded-lg hover:bg-gray-200 transition" data-action="simular" data-img="https://images.pexels.com/photos/29837129/pexels-photo-29837129.jpeg?cs=srgb&dl=pexels-anastasia-kisil-912962163-29837129.jpg&fm=jpg">Simular</button>
+        </div>
+      </article>
+
+      <!-- Card 4 - Manicure Completa -->
+      <article class="bg-white rounded-2xl shadow hover:shadow-lg transition p-6 flex flex-col" data-type="unhas" data-price="60" data-aos="fade-up">
+        <img src="https://images.pexels.com/photos/2268404/pexels-photo-2268404.jpeg?cs=srgb&dl=pexels-adrienne-andersen-1174503-2268404.jpg&fm=jpg"
+             alt="Manicure Completa" class="rounded-xl mb-4 h-56 w-full object-cover" loading="lazy">
+        <h4 class="text-xl font-bold mb-1">Manicure Completa</h4>
+        <p class="text-gray-600 mb-2">Corte, lixamento e acabamento profissional.</p>
+        <p class="text-pink-600 font-bold text-lg mb-4">R$ 60,00</p>
+        <div class="mt-auto flex gap-3">
+          <a href="agendamento.html?servico=manicure-completa" class="flex-1 text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agendar</a>
+          <button class="flex-1 text-center bg-gray-100 py-2 rounded-lg hover:bg-gray-200 transition" data-action="simular" data-img="https://images.pexels.com/photos/2268404/pexels-photo-2268404.jpeg?cs=srgb&dl=pexels-adrienne-andersen-1174503-2268404.jpg&fm=jpg">Simular</button>
+        </div>
+      </article>
+
+      <!-- Card 5 - Esmaltação Rápida -->
+      <article class="bg-white rounded-2xl shadow hover:shadow-lg transition p-6 flex flex-col" data-type="unhas" data-price="35" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://images.pexels.com/photos/791157/pexels-photo-791157.jpeg?cs=srgb&dl=pexels-jessbaileydesign-791157.jpg&fm=jpg"
+             alt="Esmaltação Rápida" class="rounded-xl mb-4 h-56 w-full object-cover" loading="lazy">
+        <h4 class="text-xl font-bold mb-1">Esmaltação Rápida</h4>
+        <p class="text-gray-600 mb-2">Troca rápida de cor — ideal entre serviços.</p>
+        <p class="text-pink-600 font-bold text-lg mb-4">R$ 35,00</p>
+        <div class="mt-auto flex gap-3">
+          <a href="agendamento.html?servico=esmaltacao-rapida" class="flex-1 text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agendar</a>
+          <button class="flex-1 text-center bg-gray-100 py-2 rounded-lg hover:bg-gray-200 transition" data-action="simular" data-img="https://images.pexels.com/photos/791157/pexels-photo-791157.jpeg?cs=srgb&dl=pexels-jessbaileydesign-791157.jpg&fm=jpg">Simular</button>
+        </div>
+      </article>
+
+      <!-- Card 6 - Alongamento e Design -->
+      <article class="bg-white rounded-2xl shadow hover:shadow-lg transition p-6 flex flex-col" data-type="cilios" data-price="150" data-aos="fade-up" data-aos-delay="150">
+        <img src="https://images.pexels.com/photos/414030/pexels-photo-414030.jpeg?cs=srgb&dl=pexels-pixabay-414030.jpg&fm=jpg"
+             alt="Alongamento & Design" class="rounded-xl mb-4 h-56 w-full object-cover" loading="lazy">
+        <h4 class="text-xl font-bold mb-1">Alongamento e Design</h4>
+        <p class="text-gray-600 mb-2">Combina técnicas para olhar marcante.</p>
+        <p class="text-pink-600 font-bold text-lg mb-4">R$ 150,00</p>
+        <div class="mt-auto flex gap-3">
+          <a href="agendamento.html?servico=alongamento-design" class="flex-1 text-center bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-700 transition">Agendar</a>
+          <button class="flex-1 text-center bg-gray-100 py-2 rounded-lg hover:bg-gray-200 transition" data-action="simular" data-img="https://images.pexels.com/photos/414030/pexels-photo-414030.jpeg?cs=srgb&dl=pexels-pixabay-414030.jpg&fm=jpg">Simular</button>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- Modal de Simulação (câmera / imagem) -->
+  <div id="sim-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60">
+    <div class="bg-white rounded-xl max-w-3xl w-full mx-4 p-4">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-bold">Simulação</h3>
+        <button id="sim-close" class="text-2xl">&times;</button>
+      </div>
+      <div id="sim-content" class="rounded-lg overflow-hidden">
+        <!-- conteúdo injetado por JS -->
+      </div>
+      <div class="mt-4 text-right">
+        <a id="sim-agendar" href="#" class="inline-block bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition">Agendar este serviço</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-10">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+      <p>&copy; 2025 PreviewMe. Todos os direitos reservados.</p>
+      <div class="flex space-x-4 mt-4 md:mt-0">
+        <a href="#"><i class="bx bxl-facebook text-2xl hover:text-white"></i></a>
+        <a href="#"><i class="bx bxl-instagram text-2xl hover:text-white"></i></a>
+        <a href="#"><i class="bx bxl-linkedin text-2xl hover:text-white"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // mobile menu
+    const menu = document.getElementById('menu');
+    const btn = document.getElementById('menu-btn');
+    function toggleMenu() { menu.classList.toggle('hidden'); }
+    btn.addEventListener('click', toggleMenu);
+
+    // Simular: abre modal com imagem (pode ser substituído por câmera/WebAR futuramente)
+    document.querySelectorAll('button[data-action="simular"]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const img = btn.getAttribute('data-img');
+        const modal = document.getElementById('sim-modal');
+        const content = document.getElementById('sim-content');
+        const simAgendar = document.getElementById('sim-agendar');
+
+        content.innerHTML = `<img src="${img}" alt="Simulação" class="w-full h-96 object-cover rounded-md">`;
+        simAgendar.setAttribute('href', 'agendamento.html'); // pode adicionar query param se quiser
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+    });
+
+    document.getElementById('sim-close').addEventListener('click', () => {
+      const modal = document.getElementById('sim-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.getElementById('sim-content').innerHTML = '';
+    });
+
+    // Filtros simples (front-end - demonstração)
+    const grid = document.getElementById('grid');
+    document.getElementById('btn-filter').addEventListener('click', () => {
+      const tipo = document.getElementById('f-tipo').value;
+      const preco = document.getElementById('f-preco').value;
+      const cards = Array.from(grid.children);
+
+      cards.forEach(card => {
+        const cardType = card.getAttribute('data-type');
+        const cardPrice = Number(card.getAttribute('data-price') || 0);
+        let show = true;
+
+        if (tipo && cardType !== tipo) show = false;
+        if (preco) {
+          if (preco === '0-50' && !(cardPrice <= 50)) show = false;
+          if (preco === '51-100' && !(cardPrice >= 51 && cardPrice <= 100)) show = false;
+          if (preco === '100+' && !(cardPrice > 100)) show = false;
+        }
+        card.style.display = show ? '' : 'none';
+      });
+    });
+
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      document.getElementById('f-tipo').value = '';
+      document.getElementById('f-cor').value = '';
+      document.getElementById('f-preco').value = '';
+      Array.from(grid.children).forEach(c => c.style.display = '');
+    });
+  </script>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script> AOS.init({ duration: 900, once: false }); </script>
+</body>
+</html>
