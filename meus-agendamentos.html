@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meus Agendamentos - PreviewMe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-2xl font-bold text-pink-600">PreviewMe</h1>
+      <nav class="hidden md:flex space-x-6 font-medium">
+        <a href="index.html#sobre" class="hover:text-pink-600">Sobre</a>
+        <a href="catalogo.html" class="hover:text-pink-600">Catálogo</a>
+        <a href="#" class="text-pink-600 font-semibold">Meus Agendamentos</a>
+        <a href="excluir-cadastro.html" class="hover:text-pink-600">Meu Perfil</a>
+      </nav>
+      <div class="hidden md:flex">
+        <a href="login.html" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-gray-300 transition">Sair</a>
+      </div>
+      <button id="menu-btn" class="md:hidden text-3xl"><i class="bx bx-menu"></i></button>
+    </div>
+  </header>
+
+  <section class="pt-40 pb-12 text-center bg-white">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900" data-aos="zoom-in">
+      Meus Agendamentos
+    </h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+      Visualize e gerencie seus próximos horários.
+    </p>
+  </section>
+
+  <main class="container mx-auto px-6 py-12">
+    <div id="agendamentos-lista" class="max-w-3xl mx-auto space-y-6">
+      
+      <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col md:flex-row md:items-center justify-between gap-4" data-aos="fade-up" data-id="1" data-tipo-cancelamento="normal">
+        <div>
+          <h3 class="text-xl font-bold text-pink-600">Unhas Decoradas</h3>
+          <p class="text-gray-600">com <strong>Ana - Designer de Unhas</strong></p>
+          <p class="mt-2 text-gray-800 font-semibold"><i class="bx bx-calendar text-lg align-middle"></i> 10 de Outubro de 2025, às 15:00</p>
+        </div>
+        <div class="status-container flex-shrink-0">
+          <button class="btn-cancelar bg-red-100 text-red-700 font-bold px-6 py-3 rounded-lg hover:bg-red-200 transition">
+            Cancelar
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col md:flex-row md:items-center justify-between gap-4" data-aos="fade-up" data-aos-delay="100" data-id="2" data-tipo-cancelamento="urgente">
+        <div>
+            <h3 class="text-xl font-bold text-pink-600">Cílios Fio a Fio</h3>
+            <p class="text-gray-600">com <strong>Maria - Especialista em Cílios</strong></p>
+            <p class="mt-2 text-gray-800 font-semibold"><i class="bx bx-calendar text-lg align-middle"></i> 08 de Outubro de 2025, às 10:00</p>
+        </div>
+        <div class="status-container flex-shrink-0">
+            <button class="btn-cancelar bg-red-100 text-red-700 font-bold px-6 py-3 rounded-lg hover:bg-red-200 transition">
+                Cancelar
+            </button>
+        </div>
+      </div>
+
+       <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 opacity-60" data-aos="fade-up" data-aos-delay="200">
+        <div>
+            <h3 class="text-xl font-bold text-gray-500">Manicure Completa</h3>
+            <p class="text-gray-500">com <strong>Ana - Designer de Unhas</strong></p>
+            <p class="mt-2 text-gray-600 font-semibold"><i class="bx bx-calendar text-lg align-middle"></i> 01 de Outubro de 2025, às 11:00</p>
+        </div>
+        <div class="status-container flex-shrink-0">
+          <span class="font-bold text-gray-500">Cancelado</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="cancelar-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-6">
+    <div class="bg-white rounded-2xl shadow-lg max-w-lg w-full mx-auto" data-aos="zoom-in-up">
+      <div class="p-6 border-b">
+        <h3 class="text-2xl font-bold text-gray-900">Cancelar Agendamento</h3>
+      </div>
+      <div id="modal-content" class="p-6 space-y-4">
+        </div>
+      <div class="p-6 bg-gray-50 rounded-b-2xl flex justify-end gap-4">
+        <button type="button" id="btn-manter-agendamento" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition">
+          Não, manter agendamento
+        </button>
+        <button type="button" id="btn-confirmar-cancelamento" class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition">
+          Sim, cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-gray-900 text-gray-300 py-10 mt-12">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 PreviewMe. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    const modal = document.getElementById('cancelar-modal');
+    const modalContent = document.getElementById('modal-content');
+    let agendamentoParaCancelar = null;
+
+    // Mensagens para os diferentes tipos de cancelamento
+    const MENSAGENS = {
+      normal: `
+        <p class="text-gray-700">
+          Você tem certeza que deseja cancelar este agendamento?
+        </p>
+      `,
+      urgente: `
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
+          <p class="font-bold">Atenção</p>
+          <p>
+            Este cancelamento está ocorrendo com menos de 24 horas de antecedência e pode estar sujeito a penalidades, conforme a política da clínica.
+          </p>
+        </div>
+        <p class="text-gray-700 mt-4">
+          Deseja mesmo assim prosseguir com o cancelamento?
+        </p>
+      `
+    };
+
+    // Abre o modal de confirmação
+    document.querySelectorAll('.btn-cancelar').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = e.target.closest('[data-id]');
+        const tipo = card.getAttribute('data-tipo-cancelamento');
+        
+        agendamentoParaCancelar = card;
+        modalContent.innerHTML = MENSAGENS[tipo];
+        
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+    });
+
+    // Fecha o modal (Fluxo Alternativo A2)
+    document.getElementById('btn-manter-agendamento').addEventListener('click', () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      agendamentoParaCancelar = null;
+    });
+
+    // Confirma o cancelamento
+    document.getElementById('btn-confirmar-cancelamento').addEventListener('click', () => {
+      if (agendamentoParaCancelar) {
+        // Simula a atualização do status
+        const statusContainer = agendamentoParaCancelar.querySelector('.status-container');
+        agendamentoParaCancelar.classList.add('opacity-60');
+        statusContainer.innerHTML = `<span class="font-bold text-red-600">Cancelado com sucesso</span>`;
+      }
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      agendamentoParaCancelar = null;
+    });
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 900,
+      once: false
+    });
+  </script>
+</body>
+</html>

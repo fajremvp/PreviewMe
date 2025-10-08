@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manter Agenda - PreviewMe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-2xl font-bold text-pink-600">PreviewMe <span class="text-sm font-normal text-gray-600">Profissional</span></h1>
+      <nav class="hidden md:flex space-x-6 font-medium">
+        <a href="#" class="text-pink-600 font-semibold">Minha Agenda</a>
+        <a href="#" class="hover:text-pink-600">Clientes</a>
+        <a href="#" class="hover:text-pink-600">Meu Perfil</a>
+      </nav>
+      <div class="hidden md:flex">
+        <a href="login.html" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-gray-300 transition">Sair</a>
+      </div>
+      <button id="menu-btn" class="md:hidden text-3xl"><i class="bx bx-menu"></i></button>
+    </div>
+  </header>
+
+  <section class="pt-40 pb-12 text-center bg-white">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900" data-aos="zoom-in">
+      Minha Agenda
+    </h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+      Visualize e gerencie seus agendamentos.
+    </p>
+  </section>
+
+  <main class="container mx-auto px-6 py-12">
+    <div class="bg-white rounded-2xl shadow-lg p-8" data-aos="fade-up">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between mb-8">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Agendamentos do Dia</h3>
+        <input type="date" value="2025-10-28" class="p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-600">
+      </div>
+
+      <div class="space-y-6">
+        
+        <div class="border-l-4 border-yellow-500 bg-yellow-50 p-6 rounded-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <p class="font-bold text-lg text-gray-900">10:00 - Joana Silva</p>
+            <p class="text-gray-600">Serviço: Unhas Decoradas</p>
+            <span class="text-sm font-semibold text-yellow-700">Pendente de Confirmação</span>
+          </div>
+          <div class="flex gap-3 mt-4 md:mt-0">
+            <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">Aceitar</button>
+            <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">Recusar</button>
+            <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition">Remarcar</button>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-green-500 bg-green-50 p-6 rounded-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <p class="font-bold text-lg text-gray-900">11:30 - Carlos Andrade</p>
+            <p class="text-gray-600">Serviço: Manicure Completa</p>
+            <span class="text-sm font-semibold text-green-700">Confirmado</span>
+          </div>
+          <div class="flex gap-3 mt-4 md:mt-0">
+            <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition">Ver Detalhes</button>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-green-500 bg-green-50 p-6 rounded-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div>
+            <p class="font-bold text-lg text-gray-900">14:00 - Beatriz Lima</p>
+            <p class="text-gray-600">Serviço: Cílios Fio a Fio (Simulação RA realizada)</p>
+            <span class="text-sm font-semibold text-green-700">Confirmado</span>
+          </div>
+          <div class="flex gap-3 mt-4 md:mt-0">
+             <button class="bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition">Ver Detalhes</button>
+          </div>
+        </div>
+        
+        <div class="border-l-4 border-gray-400 bg-gray-100 p-6 rounded-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4 opacity-70">
+          <div>
+            <p class="font-bold text-lg text-gray-900 line-through">15:30 - Fernanda Costa</p>
+            <p class="text-gray-600">Serviço: Esmaltação Rápida</p>
+            <span class="text-sm font-semibold text-gray-700">Cancelado pelo cliente</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-gray-300 py-10 mt-12">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 PreviewMe. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 900,
+      once: false
+    });
+  </script>
+</body>
+</html>

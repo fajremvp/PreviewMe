@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manter Planos - PreviewMe Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-2xl font-bold text-pink-600">PreviewMe <span class="text-sm font-normal text-gray-600">Admin</span></h1>
+      <nav class="hidden md:flex space-x-6 font-medium">
+        <a href="#" class="text-pink-600 font-semibold">Manter Planos</a>
+        <a href="#" class="hover:text-pink-600">Suporte</a>
+        <a href="#" class="hover:text-pink-600">Relatórios Gerais</a>
+      </nav>
+      <div class="hidden md:flex">
+        <a href="login.html" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-gray-300 transition">Sair</a>
+      </div>
+      <button id="menu-btn" class="md-hidden text-3xl"><i class="bx bx-menu"></i></button>
+    </div>
+  </header>
+
+  <section class="pt-40 pb-12 text-center bg-white">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900" data-aos="zoom-in">
+      Gerenciamento de Planos
+    </h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+      Crie, edite ou remova os planos de assinatura disponíveis para as clínicas.
+    </p>
+  </section>
+
+  <main class="container mx-auto px-6 py-12">
+    <div class="flex justify-end mb-8">
+      <button id="btn-criar" class="bg-pink-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-pink-700 transition flex items-center gap-2">
+        <i class="bx bx-plus"></i>
+        <span>Criar Novo Plano</span>
+      </button>
+    </div>
+
+    <div id="planos-grid" class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-2xl shadow p-8 flex flex-col" data-aos="fade-up" data-id="1">
+        <h4 class="text-xl font-bold mb-2">Básico</h4>
+        <p class="text-4xl font-extrabold text-pink-600 mb-6">R$49<span class="text-lg">/mês</span></p>
+        <ul class="space-y-2 text-gray-600 mb-6">
+          <li>✔ Limite: 1 profissional</li>
+          <li>✔ Simulação RA básica</li>
+          <li>✔ Agenda online</li>
+        </ul>
+        <div class="mt-auto flex gap-3">
+          <button class="btn-editar flex-1 text-center bg-gray-100 py-2 rounded-lg hover:bg-gray-200 transition">Editar</button>
+          <button class="btn-remover flex-1 text-center bg-red-100 text-red-700 py-2 rounded-lg hover:bg-red-200 transition">Remover</button>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl shadow-lg border-2 border-pink-600 p-8 flex flex-col" data-aos="fade-up" data-aos-delay="100" data-id="2" data-em-uso="true">
+        <h4 class="text-xl font-bold mb-2">Avançado</h4>
+        <p class="text-4xl font-extrabold text-pink-600 mb-6">R$99<span class="text-lg">/mês</span></p>
+        <ul class="space-y-2 text-gray-600 mb-6">
+          <li>✔ Limite: 5 profissionais</li>
+          <li>✔ Tudo do Básico</li>
+          <li>✔ Relatórios detalhados</li>
+        </ul>
+        <div class="mt-auto flex gap-3">
+          <button class="btn-editar flex-1 text-center bg-gray-100 py-2 rounded-lg hover:bg-gray-200 transition">Editar</button>
+          <button class="btn-remover flex-1 text-center bg-red-100 text-red-700 py-2 rounded-lg hover:bg-red-200 transition">Remover</button>
+        </div>
+        <span class="text-xs text-center mt-3 text-pink-600 font-semibold">Este plano está em uso</span>
+      </div>
+      <div class="bg-white rounded-2xl shadow p-8 flex flex-col" data-aos="fade-up" data-aos-delay="200" data-id="3">
+        <h4 class="text-xl font-bold mb-2">Premium</h4>
+        <p class="text-4xl font-extrabold text-pink-600 mb-6">R$199<span class="text-lg">/mês</span></p>
+        <ul class="space-y-2 text-gray-600 mb-6">
+            <li>✔ Limite: 20 profissionais</li>
+            <li>✔ Tudo do Avançado</li>
+            <li>✔ Suporte prioritário</li>
+        </ul>
+        <div class="mt-auto flex gap-3">
+            <button class="btn-editar flex-1 text-center bg-gray-100 py-2 rounded-lg hover:bg-gray-200 transition">Editar</button>
+            <button class="btn-remover flex-1 text-center bg-red-100 text-red-700 py-2 rounded-lg hover:bg-red-200 transition">Remover</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="remover-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-6">
+    <div class="bg-white rounded-2xl shadow-lg max-w-lg w-full mx-auto" data-aos="zoom-in-up">
+      <div class="p-6 border-b">
+        <h3 id="remover-modal-title" class="text-2xl font-bold text-gray-900"></h3>
+      </div>
+      <div class="p-6">
+        <p id="remover-modal-text" class="text-gray-700"></p>
+      </div>
+      <div id="remover-modal-footer" class="p-6 bg-gray-50 rounded-b-2xl flex justify-end gap-4">
+        <button type="button" id="btn-cancelar-remocao" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition">
+          Cancelar
+        </button>
+        <button type="button" id="btn-confirmar-remocao" class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition">
+          Confirmar Remoção
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-gray-800 text-gray-300 py-10 mt-12">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 PreviewMe Admin. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    const removerModal = document.getElementById('remover-modal');
+    const modalTitle = document.getElementById('remover-modal-title');
+    const modalText = document.getElementById('remover-modal-text');
+    const modalFooter = document.getElementById('remover-modal-footer');
+    const btnConfirmar = document.getElementById('btn-confirmar-remocao');
+    const btnCancelar = document.getElementById('btn-cancelar-remocao');
+    let cardParaRemover = null;
+
+    // Função para mostrar o modal
+    const showModal = () => {
+      removerModal.classList.remove('hidden');
+      removerModal.classList.add('flex');
+    };
+
+    // Função para esconder o modal
+    const hideModal = () => {
+      removerModal.classList.add('hidden');
+      removerModal.classList.remove('flex');
+      cardParaRemover = null;
+    };
+
+    // Lida com a remoção de planos
+    document.querySelectorAll('.btn-remover').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = e.target.closest('[data-id]');
+        const nomePlano = card.querySelector('h4').innerText;
+        const emUso = card.getAttribute('data-em-uso') === 'true';
+        cardParaRemover = card;
+
+        if (emUso) {
+          // Exceção (E1): Tentar remover plano com assinaturas ativas
+          modalTitle.innerText = 'Ação Bloqueada';
+          modalText.innerText = 'Este plano não pode ser removido, pois existem clínicas com assinaturas ativas.';
+          // Esconde o botão de confirmar, deixando apenas o de cancelar (que funcionará como "OK")
+          btnConfirmar.classList.add('hidden');
+          btnCancelar.innerText = 'OK';
+        } else {
+          // Fluxo Principal: Confirmação de exclusão
+          modalTitle.innerText = `Remover Plano "${nomePlano}"`;
+          modalText.innerText = 'Você tem certeza que deseja remover este plano? Esta ação não pode ser desfeita.';
+          btnConfirmar.classList.remove('hidden');
+          btnCancelar.innerText = 'Cancelar';
+        }
+        showModal();
+      });
+    });
+
+    // Evento para o botão de CANCELAR no modal
+    btnCancelar.addEventListener('click', hideModal);
+
+    // Evento para o botão de CONFIRMAR REMOÇÃO no modal
+    btnConfirmar.addEventListener('click', () => {
+      if (cardParaRemover) {
+        cardParaRemover.remove();
+        // Opcional: Adicionar uma notificação de sucesso "toast" aqui
+        // alert("Plano removido com sucesso.");
+      }
+      hideModal();
+    });
+
+    // Scripts do modal de criação/edição (não foram alterados)
+    const modal = document.getElementById('plano-modal');
+    // ... (o restante do JS que controla o modal de criar/editar permanece o mesmo)
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 900,
+      once: false
+    });
+  </script>
+</body>
+</html>

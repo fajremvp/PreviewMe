@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurações do Perfil - PreviewMe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-2xl font-bold text-pink-600">PreviewMe</h1>
+      <nav class="hidden md:flex space-x-6 font-medium">
+        <a href="meus-agendamentos.html" class="hover:text-pink-600">Meus Agendamentos</a>
+        <a href="visualizar-perfil-profissional.html" class="hover:text-pink-600">Meu Perfil</a>
+        <a href="#" class="text-pink-600 font-semibold">Configurações</a>
+      </nav>
+      <div class="hidden md:flex">
+        <a href="login.html" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-gray-300 transition">Sair</a>
+      </div>
+      <button id="menu-btn" class="md:hidden text-3xl"><i class="bx bx-menu"></i></button>
+    </div>
+  </header>
+
+  <section class="pt-40 pb-12 text-center bg-white">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900" data-aos="zoom-in">
+      Configurações do Perfil
+    </h2>
+    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+      Gerencie os dados do seu perfil profissional e suas preferências.
+    </p>
+  </section>
+
+  <main class="container mx-auto px-6 py-12">
+    <div class="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto space-y-8" data-aos="fade-up">
+      
+      <div>
+        <h3 class="text-xl font-bold mb-4 text-pink-600">Meus Dados Profissionais</h3>
+        <form class="space-y-4">
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2">Nome</label>
+            <input type="text" value="Ana - Designer de Unhas" class="w-full p-3 rounded-lg border border-gray-300 bg-gray-50" readonly>
+          </div>
+          <div>
+            <label class="block text-gray-700 font-semibold mb-2">E-mail</label>
+            <input type="email" value="ana.designer@email.com" class="w-full p-3 rounded-lg border border-gray-300 bg-gray-50" readonly>
+          </div>
+          <a href="cadastrar-perfil-profissional.html" class="inline-block bg-pink-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-pink-700 transition">
+            Editar Perfil
+          </a>
+        </form>
+      </div>
+
+      <hr class="border-gray-200">
+
+      <div>
+        <h3 class="text-xl font-bold mb-2 text-red-600">Área de Risco</h3>
+        <p class="text-gray-600 mb-4">A exclusão do seu perfil profissional é uma ação permanente e removerá seu acesso da plataforma e da clínica associada.</p>
+        <button id="btn-excluir" class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition">
+          Excluir meu perfil profissional
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <div id="excluir-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-6">
+    <div class="bg-white rounded-2xl shadow-lg max-w-lg w-full mx-auto" data-aos="zoom-in-up">
+      <div class="p-6 border-b">
+        <h3 class="text-2xl font-bold text-gray-900">Confirmar Exclusão do Perfil</h3>
+      </div>
+      <div class="p-6 space-y-4">
+        <p class="text-gray-700">
+          Você tem certeza que deseja excluir seu perfil? Esta ação é irreversível. <strong>Seu vínculo com a clínica será removido e todos os seus dados profissionais serão apagados.</strong> Agendamentos futuros com você serão cancelados.
+        </p>
+        <div>
+          <label for="senha-confirmacao" class="block text-gray-700 font-semibold mb-2">Para confirmar, digite sua senha:</label>
+          <input type="password" id="senha-confirmacao" placeholder="Sua senha" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500" required>
+          <p id="erro-senha" class="text-red-500 text-sm mt-2 hidden">MSG005: Credenciais inválidas. Tente novamente.</p>
+        </div>
+      </div>
+      <div class="p-6 bg-gray-50 rounded-b-2xl flex justify-end gap-4">
+        <button type="button" id="btn-cancelar" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition">
+          Cancelar
+        </button>
+        <button type="button" id="btn-confirmar-exclusao" class="bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition">
+          Confirmar Exclusão
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-gray-900 text-gray-300 py-10 mt-12">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 PreviewMe. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    const modal = document.getElementById('excluir-modal');
+    const inputSenha = document.getElementById('senha-confirmacao');
+    const erroSenha = document.getElementById('erro-senha');
+
+    // Abre o modal de confirmação
+    document.getElementById('btn-excluir').addEventListener('click', () => {
+      inputSenha.value = '';
+      erroSenha.classList.add('hidden');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    });
+
+    // Fecha o modal (Fluxo Alternativo A1) 
+    document.getElementById('btn-cancelar').addEventListener('click', () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    });
+
+    // Lida com a confirmação da exclusão
+    document.getElementById('btn-confirmar-exclusao').addEventListener('click', () => {
+      // Simula a validação de senha
+      // Em um app real, isso seria uma chamada de API
+      if (inputSenha.value === "senha123") { // Senha correta (simulação)
+        alert("Perfil profissional excluído com sucesso.");
+        window.location.href = "login.html"; // Redireciona para a página de login
+      } else {
+        // Fluxo de Exceção (E1): Senha inválida 
+        erroSenha.classList.remove('hidden');
+      }
+    });
+    
+    // Esconde a mensagem de erro ao digitar
+    inputSenha.addEventListener('input', () => {
+        if (!erroSenha.classList.contains('hidden')) {
+            erroSenha.classList.add('hidden');
+        }
+    });
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 900,
+      once: false
+    });
+  </script>
+</body>
+</html>

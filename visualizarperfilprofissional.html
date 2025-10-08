@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil Profissional - PreviewMe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+    <div class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-2xl font-bold text-pink-600">PreviewMe</h1>
+      <nav class="hidden md:flex space-x-6 font-medium">
+        <a href="index.html#sobre" class="hover:text-pink-600">Sobre</a>
+        <a href="catalogo.html" class="hover:text-pink-600">Catálogo</a>
+        <a href="meus-agendamentos.html" class="hover:text-pink-600">Meus Agendamentos</a>
+        <a href="#" class="text-pink-600 font-semibold">Perfil</a>
+      </nav>
+      <div class="hidden md:flex">
+        <a href="login.html" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-gray-300 transition">Sair</a>
+      </div>
+      <button id="menu-btn" class="md:hidden text-3xl"><i class="bx bx-menu"></i></button>
+    </div>
+  </header>
+
+  <main class="pt-32 pb-12">
+    <div class="container mx-auto px-6">
+      <div class="bg-white rounded-2xl shadow-lg max-w-3xl mx-auto" data-aos="fade-up">
+        <div class="h-48 bg-pink-100 rounded-t-2xl bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/7035115/pexels-photo-7035115.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');"></div>
+
+        <div class="p-8">
+          <div class="flex flex-col sm:flex-row items-center sm:items-end -mt-24 sm:-mt-20">
+            <img src="https://images.pexels.com/photos/3762663/pexels-photo-3762663.jpeg" alt="Foto do Profissional" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-md">
+            
+            <div class="sm:ml-6 mt-4 sm:mt-0 text-center sm:text-left">
+              <h2 class="text-3xl font-bold text-gray-900">Ana - Designer de Unhas</h2>
+              <p class="text-md text-pink-600 font-semibold">Especialista em Nail Design</p>
+              <p class="text-sm text-gray-500 mt-1">Membro desde 2025</p>
+            </div>
+          </div>
+
+          <div class="mt-8 text-center sm:text-right">
+            <a href="agendamento.html" class="bg-pink-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-pink-700 transition inline-flex items-center gap-2">
+              <i class="bx bx-calendar"></i>
+              <span>Agendar Horário</span>
+            </a>
+          </div>
+
+          <div class="mt-10">
+            <h3 class="text-xl font-bold text-pink-600 border-b-2 border-pink-200 pb-2 mb-4">Sobre Mim</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Olá! Sou Ana, uma Nail Designer apaixonada por transformar unhas em verdadeiras obras de arte. Com mais de 5 anos de experiência, sou especialista em técnicas de alongamento, esmaltação em gel e decorações criativas. Meu objetivo é oferecer um serviço de alta qualidade, sempre atenta às últimas tendências, para garantir que você saia do salão com a autoestima renovada e unhas impecáveis.
+            </p>
+          </div>
+
+          <div class="mt-10">
+            <h3 class="text-xl font-bold text-pink-600 border-b-2 border-pink-200 pb-2 mb-4">Informações</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+              <div class="flex items-center gap-3">
+                <i class="bx bx-clinic text-2xl text-pink-600"></i>
+                <div>
+                  <p class="font-semibold">Clínica</p>
+                  <p>Studio Beleza Pura</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="bx bx-id-card text-2xl text-pink-600"></i>
+                <div>
+                  <p class="font-semibold">Registro Profissional</p>
+                  <p>ANVISA 12345</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <i class="bx bx-time-five text-2xl text-pink-600"></i>
+                <div>
+                  <p class="font-semibold">Tempo de Atendimento</p>
+                  <p>Antecedência mínima de 24h</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-gray-900 text-gray-300 py-10 mt-12">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 PreviewMe. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 900,
+      once: false
+    });
+  </script>
+</body>
+</html>
